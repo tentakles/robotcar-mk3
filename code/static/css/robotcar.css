@@ -20,3 +20,15 @@ background-color:#00ff00;
 
 margin:4px;
 }
+
+.bold{
+font-weight:bold;
+}
+
+.center{
+text-align:center;
+}
+
+.topSpaced{
+margin-top:32px;
+}

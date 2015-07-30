@@ -43,6 +43,8 @@ class RoboCarBase(object):
         logging.debug("stop everything")
     def centerCam(self):
         logging.debug("centercamera ")
+    def stop(self):
+        logging.debug("STOP")
 
 #implementation for first type of car
 class RoboCarModel1(RoboCarBase):
