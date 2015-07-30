@@ -1,10 +1,10 @@
 #test impl
-from RoboCar import RoboCarBase
-car = RoboCarBase.RoboCarBase()
+#from RoboCar import RoboCarBase
+#car = RoboCarBase.RoboCarBase()
 
 #raspi impl 1
-#from RoboCar import RoboCarModel1
-#car = RoboCarModel1.RoboCarModel1(0x60)
+from RoboCar import RoboCarModel1
+car = RoboCarModel1.RoboCarModel1(0x60)
 
 #speeds etc.
 car.setMotorSpeed(2)
