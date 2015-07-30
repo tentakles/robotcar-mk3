@@ -21,10 +21,17 @@
 
 </head>
 
-<div class="panel panel-default">
+<div class="panel panel-primary">
+
+
+<div class="panel-heading">
+<h3 class="center" data-bind="text:name"></h3>
+   
+  </div>
+
 
   <div class="panel-body">
-  <h2 data-bind="text:name"></h2>
+  
 
     <div class="col-sm-5" style="background-color:#aaaaaa;height:400px;border: 2px solid #444444;">
     Videofeed placeholder
@@ -54,7 +61,7 @@
 
     <div class="col-sm-4">
 
-      <button class="btn btn-danger btn-block center-block btn-lg" data-bind="click:stop"><span>Stop</span></button>
+      <button class="btn btn-danger btn-block center-block btn-lg" data-bind="click:stop"><span class="glyphicon glyphicon-warning-sign"></span> <span> Stop</span></button>
 
         <div class="row topSpaced">
         <div class="col-sm-4"></div>
