@@ -127,6 +127,7 @@
 	};
     
     self.stop=function(){
+    self.status("Stop");
     self.setMotor("stop");
     };
     
