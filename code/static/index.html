@@ -41,7 +41,7 @@
 
         <div class="center bold">Camera angle</div>
         <input type="range" min="0" max="180" step="10" data-bind="textInput:camAngle" class="form-control keyPresser">
-        <div class="center" data-bind="text:camAngle"></div>
+        <div class="center" data-bind="html:camAngle()+'&deg;'"></div>
         
         <button class="center-block btn btn-default btn-lg" data-bind="enable:camAngle()!=camAngleDefault,click:function(){camAngle(camAngleDefault);}"><span>Center cam</span></button>
 

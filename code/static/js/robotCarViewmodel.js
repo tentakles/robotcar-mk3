@@ -34,27 +34,34 @@
     self.motorSpeedTurningRateLimited = ko.pureComputed(self.motorSpeedTurning).extend({ rateLimit: { method: "notifyWhenChangesStop", timeout: self.rateLimit } });
     self.camAngleRateLimited = ko.pureComputed(self.camAngle).extend({ rateLimit: { method: "notifyWhenChangesStop", timeout: self.rateLimit } });
  
-    self.motorSpeedRateLimited.subscribe(function (val) {
-         self.status("Speed " + val);
-         self.setMotor("speed/" + val);
-    });
+    self.motorSpeedRateLimited.subscribe(function(){self.setMotorSpeed()});
     
-    self.motorSpeedTurningRateLimited.subscribe(function (val) {
-        self.status("Turningspeed " + val);
-        self.setMotor("turningSpeed/" + val);
-    });
+    self.motorSpeedTurningRateLimited.subscribe(function(){self.setMotorSpeedTurning()});
 
-    self.camAngleRateLimited.subscribe(function (val) {
-        self.status("CamAngle " + val);
-        
+    self.camAngleRateLimited.subscribe(function(){self.setCamAngle()});
+    
+     self.setMotorSpeed=function(){  
+         var val = self.motorSpeed();
+         self.setMotor("speed/" + val,"Speed " + val);
+    };
+    
+    self.setMotorSpeedTurning=function(){  
+        var val = self.motorSpeedTurning();      
+        self.setMotor("turningSpeed/" + val,"Turningspeed " + val);
+    };
+    
+    self.setCamAngle=function(){  
+        var val = self.camAngle();
+
         self.ajaxGet(self.baseUrl+"cam/angle/"+val, function (data) {
 		if(data!="OK")
 			self.status("Kunde inte rikta kamera till " + val + ", fel uppstod", "error");
+        else
+            self.status("Cam Angle " + val);
 		}, function () {
 			self.status("Kunde inte rikta kamera till " + val, "error");
 		});
- 
-    });
+    };
     
     self.doSkipKeyEvent=function(target){
     
@@ -113,68 +120,64 @@
 	});
 
 	self.setMotorForwardReverseStop=function(){
-	self.status("MotorForwardReverseStop");	
 	self.isMotorForward(false);
 	self.isMotorReverse(false);
-	self.setMotor("forwardReverseStop");
+	self.setMotor("forwardReverseStop","Forward/Reverse stopped");
 	};
 	
 	self.setMotorLeftRightStop=function(){
-	self.status("MotorLeftRightStop");
 	self.isMotorLeft(false);
 	self.isMotorRight(false);
-	self.setMotor("leftRightStop");
+	self.setMotor("leftRightStop","Turning stopped");
 	};
     
     self.stop=function(){
-    self.status("Stop");
-    self.setMotor("stop");
+
+    self.setMotor("stop","Stop");
     };
     
 	self.setMotorForward=function(){
 	
 	if(!self.isMotorForward()){
-		self.status("MotorForward");
 		self.isMotorForward(true);
 		self.isMotorReverse(false);	
-		self.setMotor("forward");
+		self.setMotor("forward","Forward");
 		}
 	};
 	
 	self.setMotorReverse=function(){
 	
 	if(!self.isMotorReverse()){
-		self.status("MotorReverse");
 		self.isMotorReverse(true);
 		self.isMotorForward(false);
-		self.setMotor("reverse");
+		self.setMotor("reverse","Reverse");
 		}
 	};
 
 	self.setMotorLeft=function(){
 	
 	if(!self.isMotorLeft()){
-		self.status("MotorLeft");
 		self.isMotorLeft(true);
 		self.isMotorRight(false);
-		self.setMotor("left");
+		self.setMotor("left","Turn left");
 		}
 	};
 
 	self.setMotorRight=function(){
 	
 	if(!self.isMotorRight()){
-		self.status("MotorRight");
 		self.isMotorRight(true);
 		self.isMotorLeft(false);
-		self.setMotor("right");
+		self.setMotor("right","Turn right");
 		}
 	};
 	
-	self.setMotor=function(dir){
+	self.setMotor=function(dir,status){
 		self.ajaxGet(self.baseUrl+"motor/"+dir, function (data) {
 		if(data!="OK")
 			self.status("Kunde inte sätta riktning " + dir + ", fel uppstod", "error");
+        else
+            self.status(status);
 		}, function () {
 			self.status("Kunde inte sätta riktning " + dir, "error");
 		});
@@ -187,7 +190,11 @@
 		}, function () {
 			self.status("Kunde inte hämta info ");
 		});
-	
+        
+        self.setCamAngle();
+        self.setMotorSpeed();
+        self.setMotorSpeedTurning();
+
 	}
 	self.setup();
 };

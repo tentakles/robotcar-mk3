@@ -11,6 +11,7 @@ class RoboCarBase(object):
         logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
         logging.debug('init RoboCar')
         logging.debug(self.getInfo())
+        
     def getInfo(self):
         return "{}, version {}".format(self.model, self.version);    
 
@@ -23,30 +24,34 @@ class RoboCarBase(object):
     def setMotorSpeed(self, speed):
         self.motorSpeed=speed;
         logging.debug("setting motor speed: {}".format(self.motorSpeed))
+        
     def setMotorTurnSpeed(self, speed):
         self.motorTurnSpeed=speed;
         logging.debug("setting motor turn speed: {}".format(self.motorTurnSpeed))
+        
     def setCamAngle(self,angle):
         self.camAngle=angle;
         logging.debug("setting camera angle: {}".format(self.camAngle))  
-        self.doSetCamAngle()
        
     #actions etc.    
     def setMotorForwardReverseStop(self):
         logging.debug("setting motor forward reverse stop")
+        
     def setMotorLeftRightStop(self):
         logging.debug("setting motor left right stop")
+        
     def setMotorForward(self):
         logging.debug("setForward BASE called") 
+        
     def setMotorReverse(self):
         logging.debug("setBackward BASE called")
+        
     def setMotorLeft(self):
         logging.debug("setting motor left")
+        
     def setMotorRight(self):
         logging.debug("setting motor right")
+        
     def stop(self):
         logging.debug("stop BASE called")
         
-    #impls to be populated by sub classes
-    def doSetCamAngle(self):
-        logging.debug("doSetCamAngle BASE called")

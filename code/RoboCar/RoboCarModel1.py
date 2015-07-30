@@ -28,10 +28,12 @@ class RoboCarModel1(RoboCarBase.RoboCarBase):
         self.motor1 = self.mh.getMotor(1)
         self.motor2 = self.mh.getMotor(3)
         atexit.register(self.stop)
-   
-    def doSetCamAngle(self):
+
+    def setCamAngle(self,angle):
+        self.camAngle=angle;
         newAngle = self.map(self.camAngle,0,180,self.servoMin,self.servoMax)
         self.pwm.setPWM(0, 0, newAngle)
+        #logging.debug("setting camera angle: {}".format(self.camAngle))  
       
     def setMotors(self,motor1Speed,motor2Speed,motor1Dir,motor2Dir):
         # set the speed to start, from 0 (off) to 255 (max speed)
@@ -50,8 +52,15 @@ class RoboCarModel1(RoboCarBase.RoboCarBase):
         
     def setMotorForwardReverseStop(self):
         self.stop()
+        
     def setMotorLeftRightStop(self):
         self.stop()
+        
+    def setMotorLeft(self):
+        self.setMotors(self.motorSpeedTurning,self.motorSpeedTurning,Adafruit_MotorHAT.BACKWARD,Adafruit_MotorHAT.FORWARD)
+        
+    def setMotorRight(self):
+        self.setMotors(self.motorSpeedTurning,self.motorSpeedTurning,Adafruit_MotorHAT.FORWARD,Adafruit_MotorHAT.BACKWARD)
         
      
         
