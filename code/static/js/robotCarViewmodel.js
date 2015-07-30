@@ -10,8 +10,8 @@
 	
 	self.baseUrl="/api/"
     
-    self.motorSpeedDefault=8;
-    self.motorSpeedTurningDefault=3;
+    self.motorSpeedDefault=3;
+    self.motorSpeedTurningDefault=2;
     self.camAngleDefault=90;
 
 	//observables
