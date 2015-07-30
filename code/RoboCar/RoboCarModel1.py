@@ -22,7 +22,7 @@ class RoboCarModel1(RoboCarBase.RoboCarBase):
         self.pwm.setPWMFreq(60)
         
     def doSetCamAngle(self):
-        newAngle = self.map(self.angle,0,180,self.servoMin,self.servoMax)
+        newAngle = self.map(self.camAngle,0,180,self.servoMin,self.servoMax)
         self.pwm.setPWM(0, 0, newAngle)
         
      
