@@ -11,6 +11,13 @@ import atexit
 class RoboCarModel1(RoboCarBase.RoboCarBase):
     model = "RobotCar Model 1"
     version = 0.02
+    
+    def doStop():
+        mh.getMotor(1).run(Adafruit_MotorHAT.RELEASE)
+        #mh.getMotor(2).run(Adafruit_MotorHAT.RELEASE)
+        mh.getMotor(3).run(Adafruit_MotorHAT.RELEASE)
+        #mh.getMotor(4).run(Adafruit_MotorHAT.RELEASE)
+
     def __init__(self,i2c_addr):
         super(RoboCarModel1,self).__init__()
         #logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
@@ -19,11 +26,29 @@ class RoboCarModel1(RoboCarBase.RoboCarBase):
         self.pwm = PWM(0x60)
         self.servoMin = 150  # Min pulse length out of 4096
         self.servoMax = 600  # Max pulse length out of 4096
-        self.pwm.setPWMFreq(60)
-        
+        self.pwm.setPWMFreq(60)      
+        self.motor1 = mh.getMotor(1)
+        self.motor2 = mh.getMotor(3)
+        atexit.register(self.doStop)
+   
     def doSetCamAngle(self):
         newAngle = self.map(self.camAngle,0,180,self.servoMin,self.servoMax)
         self.pwm.setPWM(0, 0, newAngle)
+      
+    self.setMotors(self,motor1Speed,motor2Speed,motor1Dir,motor2Dir)
+        # set the speed to start, from 0 (off) to 255 (max speed)
+        newSpeed1 = self.map(motor1Speed,0,10,0,255)
+        newSpeed2 = self.map(motor2Speed,0,10,0,255)         
+        motor1.setSpeed(newSpeed1)
+        motor2.setSpeed(newSpeed2)
+        motor1.run(motor1Dir)
+        motor2.run(motor2Dir)
+       
+    def doSetForward(self)
+        self.setMotors(self.motorSpeed,self.motorSpeed,Adafruit_MotorHAT.FORWARD,Adafruit_MotorHAT.FORWARD)
+     
+    def doSetBackward(self)
+        self.setMotors(self.motorSpeed,self.motorSpeed,Adafruit_MotorHAT.BACKWARD,Adafruit_MotorHAT.BACKWARD)
         
      
         
