@@ -37,33 +37,16 @@ class RoboCarBase(object):
     def setMotorLeftRightStop(self):
         logging.debug("setting motor left right stop")
     def setMotorForward(self):
-        logging.debug("setting motor forward")  
-        self.doSetForward()
+        logging.debug("setForward BASE called") 
     def setMotorReverse(self):
-        logging.debug("setting motor reverse")
-        self.doSetBackward()
+        logging.debug("setBackward BASE called")
     def setMotorLeft(self):
         logging.debug("setting motor left")
     def setMotorRight(self):
         logging.debug("setting motor right")
     def stop(self):
-        logging.debug("stop everything")
-    def stop(self):
-        logging.debug("STOP")
-        self.doStop()
+        logging.debug("stop BASE called")
         
     #impls to be populated by sub classes
     def doSetCamAngle(self):
         logging.debug("doSetCamAngle BASE called")
-        
-    def doStop(self):
-        logging.debug("doStop BASE called")
-        
-    def doSetForward(self):
-        logging.debug("doSetForward BASE called")
-        
-    def doSetBackward(self):
-        logging.debug("doSetBackward BASE called")
-             
-
-    

@@ -12,7 +12,7 @@ class RoboCarModel1(RoboCarBase.RoboCarBase):
     model = "RobotCar Model 1"
     version = 0.02
     
-    def doStop(self):
+    def stop(self):
         self.mh.getMotor(1).run(Adafruit_MotorHAT.RELEASE)
         self.mh.getMotor(3).run(Adafruit_MotorHAT.RELEASE)
 
@@ -27,7 +27,7 @@ class RoboCarModel1(RoboCarBase.RoboCarBase):
         self.pwm.setPWMFreq(60)      
         self.motor1 = self.mh.getMotor(1)
         self.motor2 = self.mh.getMotor(3)
-        atexit.register(self.doStop)
+        atexit.register(self.stop)
    
     def doSetCamAngle(self):
         newAngle = self.map(self.camAngle,0,180,self.servoMin,self.servoMax)
@@ -42,11 +42,16 @@ class RoboCarModel1(RoboCarBase.RoboCarBase):
         self.motor1.run(motor1Dir)
         self.motor2.run(motor2Dir)
        
-    def doSetForward(self):
+    def setMotorForward(self):
         self.setMotors(self.motorSpeed,self.motorSpeed,Adafruit_MotorHAT.FORWARD,Adafruit_MotorHAT.FORWARD)
      
-    def doSetBackward(self):
+    def setMotorReverse(self):
         self.setMotors(self.motorSpeed,self.motorSpeed,Adafruit_MotorHAT.BACKWARD,Adafruit_MotorHAT.BACKWARD)
+        
+    def setMotorForwardReverseStop(self):
+        self.stop()
+    def setMotorLeftRightStop(self):
+        self.stop()
         
      
         
