@@ -2,12 +2,12 @@ from flask import Flask
 app = Flask(__name__)
 
 #test impl
-from RoboCar import RoboCarBase
-car = RoboCarBase.RoboCarBase()
+#from RoboCar import RoboCarBase
+#car = RoboCarBase.RoboCarBase()
 
 #raspi impl 1
-#from RoboCar import RoboCarModel1
-#car = RoboCarModel1.RoboCarModel1(0x60)
+from RoboCar import RoboCarModel1
+car = RoboCarModel1.RoboCarModel1(0x60)
 
 resp_ok = 'OK'
 resp_fail = 'FAIL'
