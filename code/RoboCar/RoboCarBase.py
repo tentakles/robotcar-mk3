@@ -5,9 +5,10 @@ class RoboCarBase(object):
     version = 0.1
 
     def __init__(self):
-        self.motorSpeed=50;        
-        self.cameraSpeed=50;
-        self.motorTurnSpeed=50;
+        self.motorSpeed=50       
+        self.cameraSpeed=50
+        self.motorTurnSpeed=50
+        self.camAngle=90
         logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
         logging.debug('init RoboCar')
         logging.debug(self.getInfo())
