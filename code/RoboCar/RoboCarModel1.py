@@ -19,11 +19,11 @@ class RoboCarModel1(RoboCarBase.RoboCarBase):
         self.pwm = PWM(0x60)
         self.servoMin = 150  # Min pulse length out of 4096
         self.servoMax = 600  # Max pulse length out of 4096
-        pwm.setPWMFreq(60)
+        self.pwm.setPWMFreq(60)
         
     def doSetCamAngle(self):
         newAngle = self.map(self.angle,0,180,self.servoMin,self.servoMax)
-        pwm.setPWM(0, 0, newAngle)
+        self.pwm.setPWM(0, 0, newAngle)
         
      
         
