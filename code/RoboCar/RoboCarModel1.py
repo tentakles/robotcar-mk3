@@ -57,10 +57,10 @@ class RoboCarModel1(RoboCarBase.RoboCarBase):
         self.stop()
         
     def setMotorLeft(self):
-        self.setMotors(self.motorSpeedTurning,self.motorSpeedTurning,Adafruit_MotorHAT.BACKWARD,Adafruit_MotorHAT.FORWARD)
+        self.setMotors(self.motorTurnSpeed,self.motorTurnSpeed,Adafruit_MotorHAT.BACKWARD,Adafruit_MotorHAT.FORWARD)
         
     def setMotorRight(self):
-        self.setMotors(self.motorSpeedTurning,self.motorSpeedTurning,Adafruit_MotorHAT.FORWARD,Adafruit_MotorHAT.BACKWARD)
+        self.setMotors(self.motorTurnSpeed,self.motorTurnSpeed,Adafruit_MotorHAT.FORWARD,Adafruit_MotorHAT.BACKWARD)
         
      
         
