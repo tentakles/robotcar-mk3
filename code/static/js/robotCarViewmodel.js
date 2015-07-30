@@ -1,8 +1,7 @@
 ﻿function RobotCarViewModel() {
-
 	var self = this;
 	
-	//keyboard keys
+	//variables
 	self.keyUp =38;
 	self.keyDown =40;
 	self.keyLeft =37;
@@ -13,6 +12,8 @@
     self.motorSpeedDefault=3;
     self.motorSpeedTurningDefault=2;
     self.camAngleDefault=90;
+    
+    self.rateLimit=500;
 
 	//observables
 	self.isMotorForward=ko.observable(false);
@@ -27,9 +28,8 @@
 
 	self.name=ko.observable("-");	
 	self.status=ko.observable("Awaiting command");
-
-    self.rateLimit=750;
     
+    //computeds, subscriptions
     self.motorSpeedRateLimited = ko.pureComputed(self.motorSpeed).extend({ rateLimit: { method: "notifyWhenChangesStop", timeout: self.rateLimit } });
     self.motorSpeedTurningRateLimited = ko.pureComputed(self.motorSpeedTurning).extend({ rateLimit: { method: "notifyWhenChangesStop", timeout: self.rateLimit } });
     self.camAngleRateLimited = ko.pureComputed(self.camAngle).extend({ rateLimit: { method: "notifyWhenChangesStop", timeout: self.rateLimit } });
@@ -40,6 +40,7 @@
 
     self.camAngleRateLimited.subscribe(function(){self.setCamAngle()});
     
+    //functions  
      self.setMotorSpeed=function(){  
          var val = self.motorSpeed();
          self.setMotor("speed/" + val,"Speed " + val);
@@ -64,7 +65,6 @@
     };
     
     self.doSkipKeyEvent=function(target){
-    
     if(target.classList && target.classList.length){
         for(var i=0;i<target.classList.length;i++){
             var c= target.classList[i];
@@ -76,7 +76,6 @@
     }
     
 	$(window).keydown(function (event) {
-    
     if(self.doSkipKeyEvent(event.target))
         return;
 
@@ -85,10 +84,10 @@
 			self.setMotorForward();
 			break;
 		case self.keyDown:
-			 self.setMotorReverse();
+			self.setMotorReverse();
 			break;
 		case self.keyLeft:
-			 self.setMotorLeft();
+			self.setMotorLeft();
 			break;
 		case self.keyRight:
 			 self.setMotorRight();
@@ -98,7 +97,6 @@
 	});
 	
 	$(window).keyup(function (event) {
-    
     if(self.doSkipKeyEvent(event.target))
         return;
     
@@ -107,13 +105,13 @@
 			self.setMotorForwardReverseStop();
 			break;
 		case self.keyDown:
-			 self.setMotorForwardReverseStop();
+			self.setMotorForwardReverseStop();
 			break;
 		case self.keyLeft:
-			 self.setMotorLeftRightStop();
+			self.setMotorLeftRightStop();
 			break;
 		case self.keyRight:
-			 self.setMotorLeftRightStop();
+			self.setMotorLeftRightStop();
 			break;
 		default:
 		}
@@ -132,12 +130,10 @@
 	};
     
     self.stop=function(){
-
     self.setMotor("stop","Stop");
     };
     
 	self.setMotorForward=function(){
-	
 	if(!self.isMotorForward()){
 		self.isMotorForward(true);
 		self.isMotorReverse(false);	
@@ -146,7 +142,6 @@
 	};
 	
 	self.setMotorReverse=function(){
-	
 	if(!self.isMotorReverse()){
 		self.isMotorReverse(true);
 		self.isMotorForward(false);
@@ -155,7 +150,6 @@
 	};
 
 	self.setMotorLeft=function(){
-	
 	if(!self.isMotorLeft()){
 		self.isMotorLeft(true);
 		self.isMotorRight(false);
@@ -164,7 +158,6 @@
 	};
 
 	self.setMotorRight=function(){
-	
 	if(!self.isMotorRight()){
 		self.isMotorRight(true);
 		self.isMotorLeft(false);
@@ -184,7 +177,6 @@
 	};	
 
 	self.setup=function(){
-	
 		self.ajaxGet(self.baseUrl+"status", function (data) {	
 			self.name(data);
 		}, function () {
@@ -194,7 +186,6 @@
         self.setCamAngle();
         self.setMotorSpeed();
         self.setMotorSpeedTurning();
-
 	}
 	self.setup();
 };
