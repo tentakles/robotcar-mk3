@@ -1,7 +1,10 @@
-from RoboCar import RoboCar
+#test impl
+from RoboCar import RoboCarBase
+car = RoboCarBase.RoboCarBase()
 
-car = RoboCar.RoboCarBase()
-#car = RoboCarBase.RoboCarModel1()
+#raspi impl 1
+#from RoboCar import RoboCarModel1
+#car = RoboCarModel1.RoboCarModel1(0x60)
 
 #speeds etc.
 car.setMotorSpeed(2)
@@ -16,5 +19,9 @@ car.setMotorLeft()
 car.setMotorRight()
 car.stop()
 car.centerCam()
+
+car.map(395, 395, 1023, 100,152);
+car.map(1023, 395, 1023, 100,152);
+car.map(800, 395, 1023, 0,100);
 
 
