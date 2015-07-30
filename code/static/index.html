@@ -40,19 +40,19 @@
     <div class="col-sm-3">
 
         <div class="center bold">Camera angle</div>
-        <input type="range" min="0" max="180" data-bind="textInput:camAngle" class="form-control keyPresser">
+        <input type="range" min="0" max="180" step="10" data-bind="textInput:camAngle" class="form-control keyPresser">
         <div class="center" data-bind="text:camAngle"></div>
         
         <button class="center-block btn btn-default btn-lg" data-bind="enable:camAngle()!=camAngleDefault,click:function(){camAngle(camAngleDefault);}"><span>Center cam</span></button>
 
         <div class="center bold topSpaced">Forward/Reverse speed</div>
-        <input type="range" min="1" max="100" data-bind="textInput:motorSpeed" class="form-control keyPresser">
+        <input type="range" min="1" max="10" step="1" data-bind="textInput:motorSpeed" class="form-control keyPresser">
         <div class="center" data-bind="text:motorSpeed"></div>
         
         <button class="btn btn-default btn-lg center-block" data-bind="enable:motorSpeed()!=motorSpeedDefault,click:function(){motorSpeed(motorSpeedDefault);}"><span>Default speed</span></button>
         
         <div class="center bold topSpaced">Turning speed</div>
-        <input type="range" min="1" max="100" data-bind="textInput:motorSpeedTurning" class="form-control keyPresser">
+        <input type="range" min="1" max="10" step="1" data-bind="textInput:motorSpeedTurning" class="form-control keyPresser">
         <div class="center" data-bind="text:motorSpeedTurning"></div>
         
         <button class="btn btn-default btn-lg center-block" data-bind="enable:motorSpeedTurning()!=motorSpeedTurningDefault,click:function(){motorSpeedTurning(motorSpeedTurningDefault);}"><span>Default speed</span></button>
