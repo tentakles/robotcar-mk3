@@ -15,6 +15,14 @@
     
     $(function(){
     ko.applyBindings(new RobotCarViewModel());
+    
+      //var ip ="10.0.1.136";
+      
+      var ip = window.location.hostname;
+      var src="http://" + ip + ":8080/?action=stream";
+            
+     $("#videoFeed").attr("src", src);
+
     });
 
     </script>
@@ -23,19 +31,27 @@
 
 <div class="panel panel-primary">
 
-
 <div class="panel-heading">
 <h3 class="center" data-bind="text:name"></h3>
    
   </div>
 
-
   <div class="panel-body">
-  
 
-    <div class="col-sm-5" style="background-color:#aaaaaa;height:400px;border: 2px solid #444444;">
-    Videofeed placeholder
-	</div>
+    <div class="col-sm-5 videoFeedContainer">
+        <div>Videofeed</div>
+    <!-- 
+    
+   
+    sample video feed 
+   
+    <img src="http://141.89.114.78/cgi-bin/video320x240.mjpg?dummy=garb" class="videoFeed" alt="Moving Image Stream">
+      
+	-->
+  
+     <img id="videoFeed" />
+   
+    </div>
 
     <div class="col-sm-3">
 
