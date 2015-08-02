@@ -84,7 +84,7 @@
         <div class="row">
        
             <div class="col-sm-4">
-                 <button class="btn btn-default btn-lg btn-block" data-bind="enable:camAngle()!=camAngleMin,click:function(){camAngle(camAngle()-camAngleStep);}"><span class="glyphicon glyphicon-plus-sign"></span><span>&nbsp;</span></button> 
+                 <button class="btn btn-default btn-lg btn-block" data-bind="enable:camAngle()!=camAngleMin,click:function(){camAngle(parseInt(camAngle())-camAngleStep);}"><span class="glyphicon glyphicon-plus-sign"></span><span>&nbsp;</span></button> 
             </div>
            
             <div class="col-sm-4">
@@ -92,7 +92,7 @@
             </div>
             
             <div class="col-sm-4">
-                 <button class="btn btn-default btn-lg btn-block" data-bind="enable:camAngle()!=camAngleMax,click:function(){camAngle(camAngle()+camAngleStep);}"><span class="glyphicon glyphicon-minus-sign"></span><span>&nbsp;</span></button>
+                 <button class="btn btn-default btn-lg btn-block" data-bind="enable:camAngle()!=camAngleMax,click:function(){camAngle(parseInt(camAngle())+camAngleStep);}"><span class="glyphicon glyphicon-minus-sign"></span><span>&nbsp;</span></button>
             </div>
             
         </div>
@@ -104,7 +104,7 @@
         <div class="row">
         
             <div class="col-sm-4">
-                <button class="btn btn-default btn-lg btn-block" data-bind="enable:motorSpeed()!=motorSpeedMin,click:function(){motorSpeed(motorSpeed()-1);}"><span class="glyphicon glyphicon-plus-sign"></span><span>&nbsp;</span></button> 
+                <button class="btn btn-default btn-lg btn-block" data-bind="enable:motorSpeed()!=motorSpeedMin,click:function(){motorSpeed(parseInt(motorSpeed())-1);}"><span class="glyphicon glyphicon-plus-sign"></span><span>&nbsp;</span></button> 
             </div>
            
             <div class="col-sm-4">
@@ -112,7 +112,7 @@
             </div>
             
             <div class="col-sm-4">
-                 <button class="btn btn-default btn-lg btn-block" data-bind="enable:motorSpeed()!=motorSpeedMax,click:function(){motorSpeed(motorSpeed()+1);}"><span class="glyphicon glyphicon-minus-sign"></span><span>&nbsp;</span></button> 
+                 <button class="btn btn-default btn-lg btn-block" data-bind="enable:motorSpeed()!=motorSpeedMax,click:function(){motorSpeed(parseInt(motorSpeed())+1);}"><span class="glyphicon glyphicon-minus-sign"></span><span>&nbsp;</span></button> 
             </div>
 
         </div>
@@ -124,7 +124,7 @@
         <div class="row">
         
             <div class="col-sm-4">
-               <button class="btn btn-default btn-lg btn-block" data-bind="enable:motorSpeedTurning()!=motorSpeedMin,click:function(){motorSpeedTurning(motorSpeedTurning()-1);}"><span class="glyphicon glyphicon-plus-sign"></span><span>&nbsp;</span></button>   
+               <button class="btn btn-default btn-lg btn-block" data-bind="enable:motorSpeedTurning()!=motorSpeedMin,click:function(){motorSpeedTurning(parseInt(motorSpeedTurning())-1);}"><span class="glyphicon glyphicon-plus-sign"></span><span>&nbsp;</span></button>   
             </div>
             
             <div class="col-sm-4">
@@ -132,7 +132,7 @@
             </div>
             
             <div class="col-sm-4">
-              <button class="btn btn-default btn-lg btn-block" data-bind="enable:motorSpeedTurning()!=motorSpeedMax,click:function(){motorSpeedTurning(motorSpeedTurning()+1);}"><span class="glyphicon glyphicon-minus-sign"></span><span>&nbsp;</span></button>
+              <button class="btn btn-default btn-lg btn-block" data-bind="enable:motorSpeedTurning()!=motorSpeedMax,click:function(){motorSpeedTurning(parseInt(motorSpeedTurning())+1);}"><span class="glyphicon glyphicon-minus-sign"></span><span>&nbsp;</span></button>
             </div>
         
          </div>
