@@ -7,6 +7,8 @@
 //m_ margin
 //o_ offset
 
+/*
+
 module screw_hole(d_screwhole,r_screwhole,m_screwhole,h_plate,w_plate,l_plate,length,q){
 
     r_screwhole_perim = r_screwhole+m_screwhole;
@@ -194,7 +196,7 @@ q=75;
 
 
 //integration test 1
-/*
+
 plate(d_screwhole=30,r_screwhole=4.1/2,m_screwhole=2,h_plate=2,w_plate=47,l_plate=110,q=q);
 
 translate([0,56+7 ,2])  
@@ -204,11 +206,77 @@ servo_mount(r_hole=4.5/2,o_hole_1=5,o_hole_2=14.5,q=q);
 
 //integration test 3
 
-plate(d_screwhole=30,r_screwhole=4.1/2,m_screwhole=2,h_plate=2,w_plate=47,l_plate=110+21,q=q);
+$fn=30;
+
+w_module = 26.3;
+h_module=10;
+
+d_module = 1.75;
+
+o_mount = 2;
+
+clearance_module=2*2;
+
+h_mount=15;
+w_mount=20;
+
+d_mount=9;
+
+O_screwhole_side=17/2;
+r_screwhole=1.5;
+
+d_screwholes=6;
+
+module solids(){
+      cube([d_module+o_mount,w_module+o_mount,h_module],center=true);
+}
 
 
-translate([0,56+7 + (21/2) ,2])  
-    rotate([0,0,90])
-servo_mount(r_hole=4.5/2,o_hole_1=5,o_hole_2=14.5,q=q);
+translate([0,0,h_module/2])
+difference(){
+    
+  solids();
+    
+    translate([0,0,o_mount/2])
+        cube([d_module,w_module,h_module],center=true);
+    
+    
+   translate([-1,0,1+ o_mount/2])
+        cube([d_module,w_module-clearance_module,h_module],center=true);
+    
+    
+    translate([o_mount/2,0,0])
+        cube([d_module,w_module -clearance_module,h_module],center=true);
+    
+}
+
+difference(){
+
+union(){
+translate([d_mount,0,h_mount/2])
+    cube([d_module,w_module+o_mount,h_mount],center=true);
+
+translate([3.5,0.5+ w_module/2,h_module/2])
+    cube([10,o_mount/2,h_module],center=true);
+
+translate([3.5,-(0.5+ w_module/2),h_module/2])
+    cube([10,o_mount/2,h_module],center=true);
+}
+
+
+ translate([d_screwholes,O_screwhole_side,12])  
+    rotate([0,90,0])
+        cylinder(r=r_screwhole,h=5);
+
+ translate([d_screwholes,-O_screwhole_side,12])  
+    rotate([0,90,0])
+        cylinder(r=r_screwhole,h=5);
+
+ translate([d_screwholes,0,7.5])  
+    rotate([0,90,0])
+        cylinder(r=6,h=5);
+
+
+}
 
 

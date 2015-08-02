@@ -9,10 +9,16 @@
 	
 	self.baseUrl="/api/"
     
-    self.motorSpeedDefault=3;
-    self.motorSpeedTurningDefault=2;
+    self.motorSpeedDefault=5;
+    self.motorSpeedTurningDefault=3;
     self.camAngleDefault=90;
-    
+    self.camAngleMin=0;
+    self.camAngleMax=180;
+    self.camAngleStep=15;
+ 
+    self.motorSpeedMax=10;
+    self.motorSpeedMin=1;
+
     self.rateLimit=500;
 
 	//observables
@@ -48,7 +54,7 @@
     
     self.setMotorSpeedTurning=function(){  
         var val = self.motorSpeedTurning();      
-        self.setMotor("turningSpeed/" + val,"Turningspeed " + val);
+        self.setMotor("turningSpeed/" + val,"Turning speed " + val);
     };
     
     self.setCamAngle=function(){  
@@ -56,11 +62,11 @@
 
         self.ajaxGet(self.baseUrl+"cam/angle/"+val, function (data) {
 		if(data!="OK")
-			self.status("Kunde inte rikta kamera till " + val + ", fel uppstod", "error");
+			self.status("Could not angle camera, error occured", "error");
         else
             self.status("Cam Angle " + val);
 		}, function () {
-			self.status("Kunde inte rikta kamera till " + val, "error");
+			self.status("Could not angle camera", "error");
 		});
     };
     
@@ -168,11 +174,11 @@
 	self.setMotor=function(dir,status){
 		self.ajaxGet(self.baseUrl+"motor/"+dir, function (data) {
 		if(data!="OK")
-			self.status("Kunde inte sätta riktning " + dir + ", fel uppstod", "error");
+			self.status("Could not activate motors, error occured", "error");
         else
             self.status(status);
 		}, function () {
-			self.status("Kunde inte sätta riktning " + dir, "error");
+			self.status("Could not activate motors", "error");
 		});
 	};	
 
@@ -180,7 +186,7 @@
 		self.ajaxGet(self.baseUrl+"status", function (data) {	
 			self.name(data);
 		}, function () {
-			self.status("Kunde inte hämta info ");
+			self.status("Could not retrieve info");
 		});
         
         self.setCamAngle();

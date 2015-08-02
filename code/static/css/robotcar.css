@@ -21,6 +21,10 @@ background-color:#00ff00;
 margin:4px;
 }
 
+.headertext{
+font-size:large;
+}
+
 .bold{
 font-weight:bold;
 }
@@ -30,7 +34,7 @@ text-align:center;
 }
 
 .topSpaced{
-margin-top:32px;
+margin-top:10px;
 }
 
 .videoFeedContainer{
@@ -38,7 +42,6 @@ background-color:#aaaaaa;
 padding:20px;
 border: 1px solid #444444;
 border-radius:5px;
-height:340px;
 }
 
 #videoFeed{
